@@ -1,0 +1,6 @@
+<?php
+
+$applicationKey = '';
+$applicationSecret = '';
+$endPoint = 'ovh-eu';
+$consumerKey = '';

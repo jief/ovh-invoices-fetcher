@@ -1,0 +1,5 @@
+/invoices/*
+!/invoices/.gitkeep
+/vendor/
+/composer.lock
+/config.inc.php
