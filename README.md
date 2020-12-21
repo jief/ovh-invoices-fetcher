@@ -10,7 +10,7 @@ run `composer install`
 ## OVH TOKEN
 Go to https://eu.api.ovh.com/createToken/ and create a new token.
 
-:eyes: Pay attention to the `Rights section.
+:eyes: Pay attention to the `Rights section`.
 
 ![Alt text](screenshot.png?raw=true "Create a token")
 
