@@ -4,38 +4,38 @@ require __DIR__ . '/vendor/autoload.php';
 
 use \Ovh\Api;
 
-if (!is_file('config.inc.php')) {
-  die('Init config.inc.php before !' . PHP_EOL);
-}
-
-require  __DIR__ . '/config.inc.php';
-
 try {
-  $ovh = new Api($applicationKey, $applicationSecret, $endPoint, $consumerKey);
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
 
-  $codes = $ovh->get('/me/bill', [
-    'date.from' => date('y') . '-01-01',
-    'date.to' => date('y') . '-12-31',
-  ]);
+    $ovh = new Api(
+        $_SERVER['applicationKey'],
+        $_SERVER['applicationSecret'],
+        $_SERVER['endPoint'],
+        $_SERVER['consumerKey']
+    );
 
-  foreach ($codes as $code) {
-    $invoice = $ovh->get('/me/bill/' . $code);
+    $codes = $ovh->get(
+        '/me/bill', [
+          'date.from' => date('y') . '-01-01',
+          'date.to' => date('y') . '-12-31',
+        ]
+    );
 
-    if (isset($invoice['pdfUrl'])) {
-      $date = new \DateTime($invoice['date']);
+    foreach ($codes as $code) {
+        $invoice = $ovh->get('/me/bill/' . $code);
 
-      $path = sprintf(
-        'invoices/%s - OVH_%s.pdf',
-        $date->format('Ymd'),
-        $invoice['billId']
-      );
+        if (isset($invoice['pdfUrl'])) {
+            $date = new \DateTime($invoice['date']);
 
-      if (!is_file($path)) {
-        echo sprintf('Downloading %s...' . PHP_EOL, $invoice['billId']);
-        file_put_contents($path, file_get_contents($invoice['pdfUrl']));
-      }
+            $path = sprintf('invoices/%s - OVH_%s.pdf', $date->format('Ymd'), $invoice['billId']);
+
+            if (!is_file($path)) {
+                  echo sprintf('Downloading %s...' . PHP_EOL, $invoice['billId']);
+                  file_put_contents($path, file_get_contents($invoice['pdfUrl']));
+            }
+        }
     }
-  }
 } catch (\Exception $e) {
-  die($e->getMessage() . PHP_EOL);
+    die($e->getMessage() . PHP_EOL);
 }
