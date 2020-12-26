@@ -14,7 +14,7 @@ Go to https://eu.api.ovh.com/createToken/ and create a new token.
 
 ![Alt text](screenshot.png?raw=true "Create a token")
 
-Create a new file `config.inc.php` based on `config.inc.php.sample` with received tokens
+Copy `.env.example` to `.env` and adapt it.
 
 ## RUN
 `php download.php`
