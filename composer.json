@@ -1,9 +1,19 @@
 {
+    "name": "jief/ovh-invoices-fetcher",
+    "description": "Download OVH invoices",
+    "type": "project",
     "require": {
         "ovh/ovh": "^3.0",
         "vlucas/phpdotenv": "^5.4"
     },
     "require-dev": {
         "symfony/var-dumper": "^5.4"
-    }
+    },
+    "license": "AGPL",
+    "authors": [
+        {
+            "name": "Jean-Francois Monfort",
+            "email": "jf.monfort@gmail.com"
+        }
+    ]
 }
