@@ -1,10 +1,9 @@
 {
     "require": {
-        "ovh/ovh": "^2.0",
-        "vlucas/phpdotenv": "^5.2"
+        "ovh/ovh": "^3.0",
+        "vlucas/phpdotenv": "^5.4"
     },
     "require-dev": {
-        "symfony/var-dumper": "^5.2",
-        "squizlabs/php_codesniffer": "^3.5"
+        "symfony/var-dumper": "^5.4"
     }
 }

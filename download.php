@@ -4,6 +4,8 @@ require __DIR__ . '/vendor/autoload.php';
 
 use \Ovh\Api;
 
+$year = date('y');
+
 try {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
     $dotenv->load();
@@ -17,8 +19,8 @@ try {
 
     $codes = $ovh->get(
         '/me/bill', [
-          'date.from' => date('y') . '-01-01',
-          'date.to' => date('y') . '-12-31',
+          'date.from' => $year . '-01-01',
+          'date.to' => $year . '-12-31',
         ]
     );
 
